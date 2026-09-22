@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Crown & Razor | Bespoke Barbershop & Grooming</title>
+  <meta name="description" content="Award-winning luxury grooming and classic barbering in the heart of Manchester." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0d0e;
+      --card-bg: #141618;
+      --accent: #d4af37;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --border: #26292d;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(12, 13, 14, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .cta-btn {
+      background-color: var(--accent);
+      color: #000;
+      font-weight: 600;
+      padding: 0.75rem 1.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .cta-btn:hover {
+      opacity: 0.9;
+    }
+    .hero {
+      padding: 5rem 5% 4rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero span {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin: 1rem 0;
+      line-height: 1.15;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    .services {
+      padding: 4rem 5%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .services h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      position: relative;
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .price {
+      color: var(--accent);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+    .book-btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.65rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+    .book-btn:hover {
+      background-color: var(--accent);
+      color: #000;
+    }
+    .info-bar {
+      border-top: 1px solid var(--border);
+      padding: 3rem 5%;
+      text-align: center;
+      background-color: var(--card-bg);
+    }
+    .info-bar p {
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo">THE CROWN & RAZOR</a>
+    <a href="#services" class="cta-btn">Book Appointment</a>
+  </header>
+
+  <section class="hero">
+    <span>Manchester's Premier Grooming Parlour</span>
+    <h1>Classic Barbering, Modern Precision.</h1>
+    <p>Hot towel shaves, precision skin fades, and tailored beard sculpts delivered with complimentary single-malt whisky and espresso.</p>
+    <a href="#services" class="cta-btn">Explore Services & Prices</a>
+  </section>
+
+  <section class="services" id="services">
+    <h2>Signature Services</h2>
+    <div class="service-grid">
+      <div class="card">
+        <h3>Master Haircut</h3>
+        <div class="price">£36.00</div>
+        <p>Full consultation, precision clipper or scissor cut, wash, hot towel finish, and custom styling.</p>
+        <a href="https://fresha.com" target="_blank" class="book-btn">Select Time</a>
+      </div>
+      <div class="card">
+        <h3>Skin Fade & Beard Sculpt</h3>
+        <div class="price">£52.00</div>
+        <p>Zero/foil skin fade matched with precision beard shaping, razor lining, and conditioning oil treatment.</p>
+        <a href="https://fresha.com" target="_blank" class="book-btn">Select Time</a>
+      </div>
+      <div class="card">
+        <h3>Traditional Hot Towel Shave</h3>
+        <div class="price">£30.00</div>
+        <p>Pre-shave essential oils, double hot-towel steam, open straight-razor shave, and cold ice-stone soothing.</p>
+        <a href="https://fresha.com" target="_blank" class="book-btn">Select Time</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-bar">
+    <p><strong>Location:</strong> 42 King Street, Manchester, M2 4WZ</p>
+    <p><strong>Opening Hours:</strong> Tuesday – Saturday: 9:00 AM – 7:30 PM | Sunday: 10:00 AM – 4:00 PM</p>
+    <p><strong>Phone:</strong> +44 161 832 0000</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 The Crown & Razor. All rights reserved. Preview Staging Build.</p>
+  </footer>
+
+</body>
+</html>
