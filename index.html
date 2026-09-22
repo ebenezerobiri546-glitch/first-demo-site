@@ -21,6 +21,8 @@
       --accent: #d4af37;
       --accent-hover: #b8952c;
       --accent-glow: rgba(212, 175, 55, 0.15);
+      --whatsapp-color: #25d366;
+      --ig-color: #e1306c;
       --text: #f0f3f6;
       --text-muted: #94a3b8;
       --radius: 12px;
@@ -70,6 +72,7 @@
       transition: var(--transition);
       border: 1px solid transparent;
       font-size: 0.95rem;
+      text-align: center;
     }
 
     .btn-primary {
@@ -92,6 +95,24 @@
     .btn-outline:hover {
       border-color: var(--accent);
       color: var(--accent);
+    }
+
+    .btn-whatsapp {
+      background-color: var(--whatsapp-color);
+      color: #fff;
+    }
+    .btn-whatsapp:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .btn-ig {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+    .btn-ig:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
     }
 
     /* Navbar */
@@ -446,6 +467,14 @@
       border-top: 1px solid var(--card-border);
     }
 
+    /* Fast Action Connect Row */
+    .direct-channels-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
     /* Barbers Grid */
     .barbers-grid {
       display: grid;
@@ -488,42 +517,55 @@
       margin-bottom: 12px;
     }
 
-    /* Lookbook */
-    .lookbook-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
+    /* Location & Map Section */
+    .map-section {
+      background: #0e1117;
+      border-top: 1px solid var(--card-border);
     }
 
-    .lookbook-item {
-      position: relative;
-      height: 340px;
+    .map-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .map-details-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 32px;
+      border-radius: var(--radius);
+    }
+
+    .map-details-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .detail-row i {
+      color: var(--accent);
+      margin-top: 3px;
+    }
+
+    .map-iframe-container {
+      width: 100%;
+      height: 380px;
       border-radius: var(--radius);
       overflow: hidden;
       border: 1px solid var(--card-border);
     }
 
-    .lookbook-item img {
+    .map-iframe-container iframe {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .lookbook-item:hover img {
-      transform: scale(1.05);
-    }
-
-    .lookbook-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 20px;
-      background: linear-gradient(transparent, rgba(11, 13, 16, 0.9));
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      border: 0;
     }
 
     /* Footer */
@@ -566,7 +608,7 @@
 
     /* Mobile Responsive */
     @media (max-width: 868px) {
-      .hero-grid {
+      .hero-grid, .map-grid {
         grid-template-columns: 1fr;
       }
       .nav-links {
@@ -577,6 +619,9 @@
       }
       .booking-wrapper {
         padding: 24px;
+      }
+      .direct-channels-row {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -593,11 +638,11 @@
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#team">Artisans</a></li>
-        <li><a href="#lookbook">Lookbook</a></li>
         <li><a href="#booking">Book Online</a></li>
-        <li><a href="#contact">Hours & Info</a></li>
+        <li><a href="#location">Find Us</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-      <a href="#booking" class="btn btn-primary">Book Now</a>
+      <a href="#booking" class="btn btn-primary">Book Chair</a>
     </div>
   </header>
 
@@ -606,13 +651,13 @@
     <div class="container hero-grid">
       <div>
         <span class="tagline-badge">
-          <i data-lucide="sparkles" size="14"></i> Premium Grooming Experience
+          <i data-lucide="sparkles" size="14"></i> Premium Lounge & Grooming Parlor
         </span>
         <h1>Master Cuts & Timeless Distinction.</h1>
-        <p>Step into an elevated atmosphere where tailored craftsmanship, modern styling, and traditional hot-towel straight-razor mastery converge.</p>
+        <p>Book directly on our website, reach us on WhatsApp in seconds, or view our location for instant Google Maps directions.</p>
         <div class="hero-actions">
-          <a href="#booking" class="btn btn-primary">Reserve Appointment</a>
-          <a href="#services" class="btn btn-outline">Explore Menu</a>
+          <a href="#booking" class="btn btn-primary">Book an Appointment</a>
+          <a href="#location" class="btn btn-outline"><i data-lucide="map-pin" size="16"></i> Get Directions</a>
         </div>
         <div class="hero-stats">
           <div class="stat-item">
@@ -621,11 +666,11 @@
           </div>
           <div class="stat-item">
             <h4>4.9 ★</h4>
-            <span>Google Reviews</span>
+            <span>Top Rated</span>
           </div>
           <div class="stat-item">
-            <h4>15k+</h4>
-            <span>Cuts Delivered</span>
+            <h4>Instant</h4>
+            <span>WhatsApp Confirmation</span>
           </div>
         </div>
       </div>
@@ -634,8 +679,8 @@
         <div class="badge-card">
           <i data-lucide="clock" color="#d4af37"></i>
           <div>
-            <div style="font-weight: 600; font-size: 0.95rem;">Walk-ins Welcomed</div>
-            <div style="font-size: 0.8rem; color: var(--text-muted);">Subject to barber schedule</div>
+            <div style="font-weight: 600; font-size: 0.95rem;">Walk-ins & Online Booking</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Confirmations sent straight to WhatsApp</div>
           </div>
         </div>
       </div>
@@ -647,7 +692,7 @@
     <div class="container">
       <div class="section-header">
         <h2>Curated Grooming Services</h2>
-        <p>Every cut includes an in-depth consultation, precision neck trim, and signature aromatic post-shave balm.</p>
+        <p>Every cut includes consultation, hot-towel neck shave, and artisan styling.</p>
       </div>
 
       <div class="service-filters">
@@ -657,9 +702,7 @@
         <button class="filter-btn" onclick="filterServices('packages')">Combos & Treatments</button>
       </div>
 
-      <div class="services-grid" id="servicesGrid">
-        <!-- Rendered by JS -->
-      </div>
+      <div class="services-grid" id="servicesGrid"></div>
     </div>
   </section>
 
@@ -667,8 +710,8 @@
   <section id="booking" class="section" style="background: #0e1117;">
     <div class="container">
       <div class="section-header">
-        <h2>Instant Reservation</h2>
-        <p>Book your chair in under a minute. Confirmation delivered directly to your device.</p>
+        <h2>Instant Reservation & Backup</h2>
+        <p>Your booking sends an instant alert to our staff's WhatsApp and is dispatched via email confirmation.</p>
       </div>
 
       <div class="booking-wrapper">
@@ -687,15 +730,18 @@
           </div>
           <div class="step-node" id="node4">
             <div class="step-circle">4</div>
-            <span>Details</span>
+            <span>Confirm</span>
           </div>
         </div>
 
         <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+          <!-- Hidden Web3Forms Input (Optional: Place free API key from web3forms.com here) -->
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+
           <!-- Step 1: Select Service -->
           <div class="booking-step active" id="step1">
             <h3 style="margin-bottom: 8px;">Select a Treatment</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Choose the core service for your appointment.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Choose your service.</p>
             <div class="choice-grid" id="bookingServiceOptions"></div>
             <div class="step-footer" style="justify-content: flex-end;">
               <button type="button" class="btn btn-primary" onclick="goToStep(2)">Continue to Artisan <i data-lucide="arrow-right" size="16"></i></button>
@@ -720,7 +766,7 @@
               <div class="choice-card" onclick="selectBarber('Julian Cole', this)">
                 <i data-lucide="smile" size="24" style="margin-bottom:8px; color:var(--accent);"></i>
                 <div style="font-weight:600;">Julian Cole</div>
-                <div style="font-size:0.8rem; color:var(--text-muted);">Beard Architect</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);">Beard Specialist</div>
               </div>
             </div>
             <div class="step-footer">
@@ -754,35 +800,118 @@
           <!-- Step 4: Contact & Confirm -->
           <div class="booking-step" id="step4">
             <h3 style="margin-bottom: 8px;">Contact & Confirmation</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">We will send your digital confirmation pass to these details.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Submitting will forward your ticket directly to WhatsApp and email.</p>
             <div class="form-group">
               <label>Full Name</label>
-              <input type="text" id="custName" class="form-control" placeholder="e.g. John Doe" required>
+              <input type="text" id="custName" name="name" class="form-control" placeholder="e.g. John Doe" required>
             </div>
             <div class="form-group">
-              <label>Phone Number</label>
-              <input type="tel" id="custPhone" class="form-control" placeholder="e.g. +1 555-019-2831" required>
+              <label>Phone / WhatsApp Number</label>
+              <input type="tel" id="custPhone" name="phone" class="form-control" placeholder="e.g. +233 24 123 4567" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="custEmail" name="email" class="form-control" placeholder="e.g. client@email.com" required>
             </div>
             <div style="background:#10141a; border:1px solid var(--card-border); padding:16px; border-radius:var(--radius); margin-bottom:20px;">
-              <div style="font-size:0.85rem; color:var(--text-muted);">Booking Summary:</div>
+              <div style="font-size:0.85rem; color:var(--text-muted);">Summary:</div>
               <div id="bookingSummary" style="font-weight:600; font-size:1.05rem; margin-top:4px;">Signature Cut — Any Specialist</div>
             </div>
             <div class="step-footer">
               <button type="button" class="btn btn-outline" onclick="goToStep(3)">Back</button>
-              <button type="submit" class="btn btn-primary">Confirm Appointment</button>
+              <button type="submit" class="btn btn-whatsapp" id="submitBtn">
+                <i data-lucide="message-circle" size="18"></i> Confirm & Send via WhatsApp
+              </button>
             </div>
           </div>
         </form>
+
+        <!-- Direct Social Fallback Options -->
+        <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--card-border); text-align: center;">
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Prefer to message us directly before booking?</p>
+          <div class="direct-channels-row">
+            <a href="https://wa.me/233240000000?text=Hi%2C%20I%20have%20a%20question%20about%20booking%20an%20appointment" target="_blank" class="btn btn-outline" style="border-color: #25d366; color: #25d366;">
+              <i data-lucide="message-square" size="16"></i> Chat on WhatsApp
+            </a>
+            <a href="https://instagram.com/yourbarbershop" target="_blank" class="btn btn-outline" style="border-color: #e1306c; color: #e1306c;">
+              <i data-lucide="instagram" size="16"></i> DM us on Instagram
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Artisans/Team -->
+  <!-- Location & Google Maps Section -->
+  <section id="location" class="section map-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Find Our Lounge</h2>
+        <p>Convenient central location with dedicated parking for all clients.</p>
+      </div>
+      <div class="map-grid">
+        <div class="map-details-card">
+          <h3>The Crown & Razor Lounge</h3>
+          
+          <div class="detail-row">
+            <i data-lucide="map-pin" size="20"></i>
+            <div>
+              <strong>Address</strong>
+              <div style="color:var(--text-muted); font-size:0.95rem;">Oxford Street, Osu, Accra, Ghana</div>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <i data-lucide="phone-call" size="20"></i>
+            <div>
+              <strong>Phone / WhatsApp</strong>
+              <div style="color:var(--text-muted); font-size:0.95rem;">+233 24 000 0000</div>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <i data-lucide="instagram" size="20"></i>
+            <div>
+              <strong>Instagram</strong>
+              <div style="color:var(--text-muted); font-size:0.95rem;">@crownandrazor</div>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <i data-lucide="mail" size="20"></i>
+            <div>
+              <strong>Email</strong>
+              <div style="color:var(--text-muted); font-size:0.95rem;">booking@crownandrazor.com</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <!-- Instant Google Maps Direction trigger -->
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Accra+Mall,+Accra,+Ghana" target="_blank" class="btn btn-primary" style="width: 100%;">
+              <i data-lucide="navigation" size="16"></i> Open Google Maps Directions
+            </a>
+          </div>
+        </div>
+
+        <div class="map-iframe-container">
+          <!-- Interactive Google Maps Embed -->
+          <iframe 
+            src="https://maps.google.com/maps?q=Accra%20Mall&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            loading="lazy" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
   <section id="team" class="section">
     <div class="container">
       <div class="section-header">
         <h2>Meet The Artisans</h2>
-        <p>Passionate craftsmen dedicated to sharp details, bespoke care, and timeless style.</p>
+        <p>Passionate craftsmen dedicated to sharp details and bespoke care.</p>
       </div>
       <div class="barbers-grid">
         <div class="barber-card">
@@ -805,7 +934,7 @@
           <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Kwame Mensah">
           <div class="barber-info">
             <h3>Kwame Mensah</h3>
-            <div class="role">Hair Texture & Pattern Stylist</div>
+            <div class="role">Texture & Pattern Specialist</div>
             <p style="color:var(--text-muted); font-size:0.9rem;">Specializing in textured hair shaping, loc maintenance, and bespoke partings.</p>
           </div>
         </div>
@@ -813,46 +942,7 @@
     </div>
   </section>
 
-  <!-- Lookbook / Gallery -->
-  <section id="lookbook" class="section" style="background:#0e1117;">
-    <div class="container">
-      <div class="section-header">
-        <h2>The Lookbook</h2>
-        <p>A glimpse into recent cuts, beard trims, and styling leaving our chairs.</p>
-      </div>
-      <div class="lookbook-grid">
-        <div class="lookbook-item">
-          <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=700&q=80" alt="Clean Fade">
-          <div class="lookbook-caption">
-            <div>
-              <strong>Low Mid-Fade</strong>
-              <div style="font-size:0.8rem; color:var(--text-muted);">Marcus Sterling</div>
-            </div>
-          </div>
-        </div>
-        <div class="lookbook-item">
-          <img src="https://images.unsplash.com/photo-1517832606589-7629c339590a?auto=format&fit=crop&w=700&q=80" alt="Classic Pompadour">
-          <div class="lookbook-caption">
-            <div>
-              <strong>Classic Scissor Cut</strong>
-              <div style="font-size:0.8rem; color:var(--text-muted);">Julian Cole</div>
-            </div>
-          </div>
-        </div>
-        <div class="lookbook-item">
-          <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=700&q=80" alt="Beard Sculpt">
-          <div class="lookbook-caption">
-            <div>
-              <strong>Beard Sculpt & Lineup</strong>
-              <div style="font-size:0.8rem; color:var(--text-muted);">Kwame Mensah</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer & Contact -->
+  <!-- Footer -->
   <footer id="contact">
     <div class="container">
       <div class="footer-grid">
@@ -861,7 +951,7 @@
             <i data-lucide="scissors"></i>
             <span>CROWN & RAZOR</span>
           </div>
-          <p>Where old-school etiquette meets contemporary urban tailoring. Relax with an espresso or beverage during every visit.</p>
+          <p>Where old-school etiquette meets contemporary urban tailoring. Enjoy an espresso or beverage during every visit.</p>
         </div>
         <div class="footer-col">
           <h4>Operating Hours</h4>
@@ -870,10 +960,10 @@
           <p>Sunday: 10:00 AM – 5:00 PM</p>
         </div>
         <div class="footer-col">
-          <h4>Location & Contact</h4>
-          <p><i data-lucide="map-pin" size="14"></i> 44 Heritage Way, Suite 102</p>
-          <p><i data-lucide="phone" size="14"></i> +1 (555) 789-2341</p>
-          <p><i data-lucide="mail" size="14"></i> appointments@crownrazor.com</p>
+          <h4>Connect</h4>
+          <li><a href="https://instagram.com" target="_blank" style="color:var(--text-muted);"><i data-lucide="instagram" size="14"></i> Instagram</a></li>
+          <li><a href="https://wa.me/233240000000" target="_blank" style="color:var(--text-muted);"><i data-lucide="message-circle" size="14"></i> WhatsApp Support</a></li>
+          <li><a href="#location" style="color:var(--text-muted);"><i data-lucide="map-pin" size="14"></i> Find on Map</a></li>
         </div>
       </div>
       <div class="bottom-bar">
@@ -886,6 +976,20 @@
   <script>
     // Initialize Icons
     lucide.createIcons();
+
+    // ==========================================
+    // ⚙️ SHOP CONFIGURATION SETTINGS
+    // ==========================================
+    const SHOP_CONFIG = {
+      // Barbershop WhatsApp number (International format without '+' or leading zeros, e.g., '233241234567')
+      whatsappNumber: '233240000000',
+      
+      // Barbershop Instagram handle (without '@')
+      instagramHandle: 'crownandrazor',
+
+      // Google Maps destination for one-tap navigation
+      mapsDestination: 'Accra Mall, Accra, Ghana'
+    };
 
     // Services Catalog Data
     const services = [
@@ -989,7 +1093,6 @@
       selectedService = services.find(s => s.id === serviceId);
       updateSummary();
       populateBookingServices();
-      // highlight choice
       document.querySelectorAll('#bookingServiceOptions .choice-card').forEach((c, idx) => {
         if (services[idx].id === serviceId) c.classList.add('selected');
         else c.classList.remove('selected');
@@ -998,14 +1101,60 @@
       goToStep(2);
     }
 
+    // ==========================================
+    // 📲 SUBMIT TO WHATSAPP & BACKGROUND EMAIL BACKUP
+    // ==========================================
     function handleBookingSubmit(e) {
       e.preventDefault();
       const name = document.getElementById('custName').value;
+      const phone = document.getElementById('custPhone').value;
+      const email = document.getElementById('custEmail').value;
       const date = document.getElementById('bookingDate').value;
-      
-      alert(`🎉 Thank you, ${name}!\n\nYour appointment for [${selectedService.title}] has been reserved with ${selectedBarber} on ${date} at ${selectedTime}.\n\nA confirmation SMS has been dispatched.`);
-      goToStep(1);
-      e.target.reset();
+      const submitBtn = document.getElementById('submitBtn');
+
+      submitBtn.innerText = "Dispatching Appointment...";
+
+      // 1. Compose formatted WhatsApp message
+      const message = `💈 *NEW APPOINTMENT BOOKING* 💈\n\n` +
+        `👤 *Name:* ${name}\n` +
+        `📞 *Phone:* ${phone}\n` +
+        `✉️ *Email:* ${email}\n` +
+        `✂️ *Service:* ${selectedService.title} (${selectedService.price})\n` +
+        `💈 *Barber:* ${selectedBarber}\n` +
+        `📅 *Date:* ${date}\n` +
+        `⏰ *Time Slot:* ${selectedTime}\n\n` +
+        `_Sent from The Crown & Razor online booking portal._`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://wa.me/${SHOP_CONFIG.whatsappNumber}?text=${encodedMessage}`;
+
+      // 2. Dispatch email backup in background (Web3Forms API)
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: "YOUR_ACCESS_KEY_HERE", // Optional: paste free key here
+          subject: `New Barber Booking: ${name} (${date} at ${selectedTime})`,
+          name: name,
+          phone: phone,
+          email: email,
+          service: selectedService.title,
+          price: selectedService.price,
+          barber: selectedBarber,
+          date: date,
+          time: selectedTime
+        })
+      }).catch(err => console.log('Email backup note:', err));
+
+      // 3. Open WhatsApp directly for the client
+      setTimeout(() => {
+        window.open(whatsappURL, '_blank');
+        alert(`🎉 Thank you, ${name}! Your booking summary has been created. We're now opening WhatsApp to confirm directly with our team.`);
+        goToStep(1);
+        e.target.reset();
+        submitBtn.innerHTML = `<i data-lucide="message-circle" size="18"></i> Confirm & Send via WhatsApp`;
+        lucide.createIcons();
+      }, 500);
     }
 
     // Init Page
