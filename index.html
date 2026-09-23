@@ -3,16 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Crown & Razor | Modern Barbershop & Grooming Lounge</title>
+  <title>The Crown & Razor Lounge | Client & Admin System</title>
   
-  <!-- Fonts -->
+  <!-- Fonts & Lucide Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  
+
   <style>
     :root {
       --bg: #0b0d10;
@@ -21,12 +19,15 @@
       --accent: #d4af37;
       --accent-hover: #b8952c;
       --accent-glow: rgba(212, 175, 55, 0.15);
-      --whatsapp-color: #25d366;
-      --ig-color: #e1306c;
+      --whatsapp: #25d366;
+      --ig: #e1306c;
+      --danger: #ef4444;
+      --success: #10b981;
+      --warning: #f59e0b;
       --text: #f0f3f6;
       --text-muted: #94a3b8;
       --radius: 12px;
-      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * {
@@ -54,8 +55,8 @@
     }
 
     .container {
-      width: 90%;
-      max-width: 1200px;
+      width: 92%;
+      max-width: 1240px;
       margin: 0 auto;
     }
 
@@ -65,13 +66,13 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px 24px;
+      padding: 11px 22px;
       border-radius: var(--radius);
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
       border: 1px solid transparent;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       text-align: center;
     }
 
@@ -97,31 +98,32 @@
       color: var(--accent);
     }
 
+    .btn-admin {
+      background: #1e2633;
+      color: #cbd5e1;
+      border: 1px solid var(--card-border);
+      font-size: 0.8rem;
+      padding: 6px 14px;
+    }
+
+    .btn-admin:hover, .btn-admin.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
     .btn-whatsapp {
-      background-color: var(--whatsapp-color);
+      background-color: var(--whatsapp);
       color: #fff;
     }
-    .btn-whatsapp:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-    }
+    .btn-whatsapp:hover { opacity: 0.9; }
 
-    .btn-ig {
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      color: #fff;
-    }
-    .btn-ig:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-    }
-
-    /* Navbar */
+    /* Navigation */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 1000;
       backdrop-filter: blur(14px);
-      background: rgba(11, 13, 16, 0.85);
+      background: rgba(11, 13, 16, 0.88);
       border-bottom: 1px solid var(--card-border);
     }
 
@@ -129,27 +131,34 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 76px;
+      height: 74px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--accent);
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: 20px;
       list-style: none;
     }
 
     .nav-links a {
       color: var(--text-muted);
       font-weight: 500;
+      font-size: 0.92rem;
       transition: var(--transition);
     }
 
@@ -157,121 +166,97 @@
       color: var(--accent);
     }
 
+    /* Sections */
+    .section {
+      padding: 75px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 45px;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
     /* Hero */
     .hero {
-      padding: 100px 0 80px;
-      position: relative;
+      padding: 85px 0 65px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
       align-items: center;
     }
 
-    .tagline-badge {
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
+      padding: 5px 14px;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 50px;
       color: var(--accent);
-      font-size: 0.85rem;
-      margin-bottom: 20px;
+      font-size: 0.82rem;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      font-size: 3.2rem;
+      font-size: 3.1rem;
       line-height: 1.15;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .hero p {
       color: var(--text-muted);
-      font-size: 1.1rem;
-      margin-bottom: 32px;
-      max-width: 520px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+      max-width: 500px;
     }
 
     .hero-stats {
       display: flex;
-      gap: 32px;
-      margin-top: 40px;
-      padding-top: 24px;
+      gap: 28px;
+      margin-top: 36px;
+      padding-top: 22px;
       border-top: 1px solid var(--card-border);
     }
 
     .stat-item h4 {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       color: var(--accent);
     }
 
     .stat-item span {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
-    }
-
-    .hero-image-wrapper {
-      position: relative;
     }
 
     .hero-image {
       width: 100%;
-      height: 480px;
+      height: 440px;
       object-fit: cover;
       border-radius: var(--radius);
       border: 1px solid var(--card-border);
     }
 
-    .badge-card {
-      position: absolute;
-      bottom: -20px;
-      left: -20px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      padding: 16px 20px;
-      border-radius: var(--radius);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    /* Section Headers */
-    .section {
-      padding: 80px 0;
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 50px;
-    }
-
-    .section-header h2 {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
-    }
-
-    .section-header p {
-      color: var(--text-muted);
-    }
-
-    /* Services */
+    /* Services Grid */
     .service-filters {
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 36px;
+      margin-bottom: 30px;
       flex-wrap: wrap;
     }
 
@@ -279,11 +264,12 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       color: var(--text-muted);
-      padding: 8px 18px;
+      padding: 7px 18px;
       border-radius: 30px;
       cursor: pointer;
       transition: var(--transition);
       font-weight: 500;
+      font-size: 0.85rem;
     }
 
     .filter-btn.active, .filter-btn:hover {
@@ -295,13 +281,13 @@
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
+      gap: 22px;
     }
 
     .service-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      padding: 28px;
+      padding: 24px;
       border-radius: var(--radius);
       display: flex;
       flex-direction: column;
@@ -311,48 +297,37 @@
 
     .service-card:hover {
       border-color: var(--accent);
-      transform: translateY(-4px);
+      transform: translateY(-3px);
     }
 
     .service-card .top-meta {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .service-card .price {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 700;
       color: var(--accent);
     }
 
     .service-card .duration {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       display: flex;
       align-items: center;
       gap: 4px;
     }
 
-    .service-card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-    }
-
-    .service-card p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 20px;
-    }
-
-    /* Booking System */
+    /* Booking Stepper Form */
     .booking-wrapper {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: var(--radius);
-      padding: 40px;
-      max-width: 820px;
+      padding: 36px;
+      max-width: 840px;
       margin: 0 auto;
     }
 
@@ -360,7 +335,7 @@
       display: flex;
       justify-content: space-between;
       position: relative;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
     .step-node {
@@ -368,7 +343,7 @@
       flex-direction: column;
       align-items: center;
       gap: 6px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
       z-index: 1;
     }
@@ -403,44 +378,63 @@
 
     .booking-step.active {
       display: block;
-      animation: fadeIn 0.4s ease;
+      animation: fadeIn 0.3s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .choice-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 14px;
-      margin: 20px 0;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
     }
 
     .choice-card {
       background: #10141a;
       border: 1px solid var(--card-border);
-      padding: 16px;
+      padding: 14px;
       border-radius: var(--radius);
       cursor: pointer;
       transition: var(--transition);
       text-align: center;
+      position: relative;
     }
 
-    .choice-card:hover, .choice-card.selected {
+    .choice-card:hover:not(.disabled), .choice-card.selected {
       border-color: var(--accent);
-      background: rgba(212, 175, 55, 0.05);
+      background: rgba(212, 175, 55, 0.06);
+    }
+
+    /* Slot conflict styles */
+    .choice-card.disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      border-color: #2b1f24;
+      background: #171114;
+      text-decoration: line-through;
+    }
+
+    .choice-card .conflict-tag {
+      display: block;
+      font-size: 0.68rem;
+      color: #f87171;
+      text-decoration: none;
+      margin-top: 4px;
+      font-weight: 600;
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .form-group label {
       display: block;
-      font-size: 0.9rem;
-      margin-bottom: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
       color: var(--text-muted);
     }
 
@@ -448,7 +442,7 @@
       width: 100%;
       background: #10141a;
       border: 1px solid var(--card-border);
-      padding: 12px 16px;
+      padding: 11px 14px;
       border-radius: var(--radius);
       color: var(--text);
       font-family: inherit;
@@ -462,705 +456,1021 @@
     .step-footer {
       display: flex;
       justify-content: space-between;
-      margin-top: 32px;
-      padding-top: 20px;
+      margin-top: 28px;
+      padding-top: 18px;
       border-top: 1px solid var(--card-border);
     }
 
-    /* Fast Action Connect Row */
-    .direct-channels-row {
+    /* Admin View Styles */
+    #adminView {
+      display: none;
+      padding: 40px 0 80px;
+    }
+
+    .admin-metrics {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 16px;
-      margin-top: 24px;
+      margin-bottom: 30px;
     }
 
-    /* Barbers Grid */
-    .barbers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 28px;
-    }
-
-    .barber-card {
+    .metric-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: var(--transition);
-    }
-
-    .barber-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-
-    .barber-card img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-    }
-
-    .barber-info {
       padding: 20px;
-    }
-
-    .barber-info h3 {
-      font-size: 1.25rem;
-      margin-bottom: 4px;
-    }
-
-    .barber-info .role {
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
-
-    /* Location & Map Section */
-    .map-section {
-      background: #0e1117;
-      border-top: 1px solid var(--card-border);
-    }
-
-    .map-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .map-details-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      padding: 32px;
       border-radius: var(--radius);
     }
 
-    .map-details-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-    }
-
-    .detail-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-
-    .detail-row i {
-      color: var(--accent);
-      margin-top: 3px;
-    }
-
-    .map-iframe-container {
-      width: 100%;
-      height: 380px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--card-border);
-    }
-
-    .map-iframe-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--card-border);
-      padding: 60px 0 30px;
-      background: #08090c;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-col h4 {
-      margin-bottom: 20px;
-      color: var(--text);
-    }
-
-    .footer-col p, .footer-col li {
+    .metric-card span {
+      font-size: 0.8rem;
       color: var(--text-muted);
-      font-size: 0.9rem;
-      list-style: none;
-      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .bottom-bar {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 24px;
+    .metric-card h3 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-top: 6px;
+    }
+
+    .admin-toolbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      flex-wrap: wrap;
+      margin-bottom: 20px;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
-    /* Mobile Responsive */
-    @media (max-width: 868px) {
-      .hero-grid, .map-grid {
-        grid-template-columns: 1fr;
-      }
-      .nav-links {
-        display: none;
-      }
-      .hero h1 {
-        font-size: 2.4rem;
-      }
-      .booking-wrapper {
-        padding: 24px;
-      }
-      .direct-channels-row {
-        grid-template-columns: 1fr;
-      }
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    th {
+      background: #0f131a;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      letter-spacing: 0.5px;
+    }
+
+    tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .badge-status {
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-confirmed { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .status-pending { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+    .status-completed { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+    .status-cancelled { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+
+    .action-btn-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-action {
+      background: #11151c;
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 5px 9px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      cursor: pointer;
+    }
+    .btn-action:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      max-width: 480px;
+      width: 100%;
+      padding: 28px;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #151b24;
+      border: 1px solid var(--accent);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      z-index: 3000;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2.3rem; }
+      .booking-wrapper { padding: 20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <header class="navbar">
     <div class="container nav-container">
-      <a href="#" class="brand">
+      <a href="#" class="brand" onclick="switchView('client')">
         <i data-lucide="scissors"></i>
         <span>CROWN & RAZOR</span>
       </a>
-      <ul class="nav-links">
-        <li><a href="#services">Services</a></li>
+
+      <ul class="nav-links" id="clientNav">
+        <li><a href="#services">Menu</a></li>
+        <li><a href="#booking">Book Seat</a></li>
         <li><a href="#team">Artisans</a></li>
-        <li><a href="#booking">Book Online</a></li>
         <li><a href="#location">Find Us</a></li>
-        <li><a href="#contact">Contact</a></li>
       </ul>
-      <a href="#booking" class="btn btn-primary">Book Chair</a>
+
+      <div class="nav-actions">
+        <!-- Currency Toggle -->
+        <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" onclick="toggleCurrency()" id="currencyToggle">
+          GHS ₵
+        </button>
+
+        <!-- Admin Mode Access Button -->
+        <button class="btn btn-admin" id="viewModeBtn" onclick="toggleAdminPrompt()">
+          <i data-lucide="lock" size="14"></i> <span id="adminBtnLabel">Staff Portal</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container hero-grid">
+  <!-- ========================================== -->
+  <!-- 1. CLIENT FACING INTERFACE -->
+  <!-- ========================================== -->
+  <main id="clientView">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge">
+            <i data-lucide="shield-check" size="14"></i> Live Conflict Prevention Enabled
+          </span>
+          <h1>Master Grooming & Timeless Elegance.</h1>
+          <p>Experience real-time chair reservation, artisan hair sculpting, traditional hot towels, and instant WhatsApp confirmations.</p>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a href="#booking" class="btn btn-primary">Book an Appointment</a>
+            <a href="#location" class="btn btn-outline"><i data-lucide="map-pin" size="16"></i> Directions</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <h4>100%</h4>
+              <span>Conflict Free</span>
+            </div>
+            <div class="stat-item">
+              <h4>4.9 ★</h4>
+              <span>Top Rated</span>
+            </div>
+            <div class="stat-item">
+              <h4>Instant</h4>
+              <span>Live Sync</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img class="hero-image" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=80" alt="Lounge Interior">
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Services & Grooming Menu</h2>
+          <p>Every cut includes tailored shears or clippers work, warm towel neck treatment, and styling balm.</p>
+        </div>
+
+        <div class="service-filters">
+          <button class="filter-btn active" onclick="filterServices('all')">All Services</button>
+          <button class="filter-btn" onclick="filterServices('hair')">Haircuts & Fades</button>
+          <button class="filter-btn" onclick="filterServices('beard')">Beards & Shaves</button>
+          <button class="filter-btn" onclick="filterServices('combo')">Royal Combos</button>
+        </div>
+
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <!-- Interactive Stepper Booking Form -->
+    <section id="booking" class="section" style="background:#0e1117;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Reserve Your Appointment</h2>
+          <p>Booked slots are automatically locked in real-time across the entire system.</p>
+        </div>
+
+        <div class="booking-wrapper">
+          <div class="steps-indicator">
+            <div class="step-node active" id="node1">
+              <div class="step-circle">1</div>
+              <span>Service</span>
+            </div>
+            <div class="step-node" id="node2">
+              <div class="step-circle">2</div>
+              <span>Barber</span>
+            </div>
+            <div class="step-node" id="node3">
+              <div class="step-circle">3</div>
+              <span>Time Slot</span>
+            </div>
+            <div class="step-node" id="node4">
+              <div class="step-circle">4</div>
+              <span>Confirmation</span>
+            </div>
+          </div>
+
+          <form id="bookingForm" onsubmit="handleCustomerBooking(event)">
+            <!-- Step 1: Select Service -->
+            <div class="booking-step active" id="step1">
+              <h3>1. Select Your Service</h3>
+              <p style="color:var(--text-muted); font-size:0.88rem; margin-top:4px;">Pick a service to proceed.</p>
+              <div class="choice-grid" id="bookingServiceChoices"></div>
+              <div class="step-footer" style="justify-content: flex-end;">
+                <button type="button" class="btn btn-primary" onclick="goToStep(2)">Choose Barber &rarr;</button>
+              </div>
+            </div>
+
+            <!-- Step 2: Choose Barber -->
+            <div class="booking-step" id="step2">
+              <h3>2. Choose Your Master Barber</h3>
+              <p style="color:var(--text-muted); font-size:0.88rem; margin-top:4px;">Availability will be checked specifically for this artisan.</p>
+              <div class="choice-grid" id="barberChoices"></div>
+              <div class="step-footer">
+                <button type="button" class="btn btn-outline" onclick="goToStep(1)">&larr; Back</button>
+                <button type="button" class="btn btn-primary" onclick="goToStep(3)">Select Date & Time &rarr;</button>
+              </div>
+            </div>
+
+            <!-- Step 3: Date & Slot (Conflict Checking) -->
+            <div class="booking-step" id="step3">
+              <h3>3. Pick Date & Available Slot</h3>
+              <div class="form-group" style="margin-top:16px;">
+                <label>Appointment Date</label>
+                <input type="date" id="bookingDateInput" class="form-control" onchange="renderAvailableSlots()" required>
+              </div>
+              
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <label style="font-size:0.85rem; color:var(--text-muted); margin:0;">Time Slots for <span id="slotBarberName" style="color:var(--accent);">Any Specialist</span></label>
+                <span style="font-size:0.75rem; color:var(--text-muted);"><span style="color:#ef4444;">●</span> Struck out = Booked</span>
+              </div>
+              <div class="choice-grid" id="timeSlotGrid"></div>
+
+              <div class="step-footer">
+                <button type="button" class="btn btn-outline" onclick="goToStep(2)">&larr; Back</button>
+                <button type="button" class="btn btn-primary" onclick="goToStep(4)">Proceed to Details &rarr;</button>
+              </div>
+            </div>
+
+            <!-- Step 4: Client Info & Submit -->
+            <div class="booking-step" id="step4">
+              <h3>4. Client Details & Dispatch</h3>
+              <div class="form-group" style="margin-top:16px;">
+                <label>Full Name *</label>
+                <input type="text" id="custName" class="form-control" placeholder="e.g. Kwame Mensah" required>
+              </div>
+              <div class="form-group">
+                <label>Phone / WhatsApp Number *</label>
+                <input type="tel" id="custPhone" class="form-control" placeholder="e.g. +233 24 123 4567" required>
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="custEmail" class="form-control" placeholder="e.g. kwame@example.com">
+              </div>
+
+              <!-- Live Summary Box -->
+              <div style="background:#10141a; border:1px solid var(--card-border); padding:16px; border-radius:var(--radius); margin-bottom:16px;">
+                <div style="font-size:0.82rem; color:var(--text-muted);">Booking Summary:</div>
+                <div id="bookingSummary" style="font-weight:600; font-size:1.05rem; margin-top:4px;">Signature Cut — Any Specialist</div>
+                <div id="summaryTotal" style="color:var(--accent); font-weight:700; margin-top:2px;">Total: ₵150</div>
+              </div>
+
+              <div class="step-footer">
+                <button type="button" class="btn btn-outline" onclick="goToStep(3)">&larr; Back</button>
+                <button type="submit" class="btn btn-whatsapp" id="submitBtn">
+                  <i data-lucide="message-circle" size="18"></i> Confirm & Open WhatsApp
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location & Directions -->
+    <section id="location" class="section" style="border-top:1px solid var(--card-border);">
+      <div class="container">
+        <div class="section-header">
+          <h2>Find The Lounge</h2>
+          <p>Convenient access with private parking in Osu, Accra.</p>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:30px; align-items:center;">
+          <div style="background:var(--card-bg); border:1px solid var(--card-border); padding:28px; border-radius:var(--radius);">
+            <h3 style="font-size:1.4rem; margin-bottom:16px;">The Crown & Razor</h3>
+            <p style="color:var(--text-muted); margin-bottom:10px;"><i data-lucide="map-pin" size="16"></i> Oxford Street, Osu, Accra, Ghana</p>
+            <p style="color:var(--text-muted); margin-bottom:10px;"><i data-lucide="phone" size="16"></i> +233 24 000 0000</p>
+            <p style="color:var(--text-muted); margin-bottom:20px;"><i data-lucide="clock" size="16"></i> Mon – Sat: 9:00 AM – 8:00 PM</p>
+            
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Accra+Mall,+Accra,+Ghana" target="_blank" class="btn btn-primary" style="width:100%;">
+              <i data-lucide="navigation" size="16"></i> Open Google Maps Navigation
+            </a>
+          </div>
+          <div style="height:320px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--card-border);">
+            <iframe 
+              src="https://maps.google.com/maps?q=Accra%20Mall&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+              style="width:100%; height:100%; border:0;"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- 2. ADMIN DASHBOARD & BACKEND MANAGEMENT -->
+  <!-- ========================================== -->
+  <div id="adminView" class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:28px; border-bottom:1px solid var(--card-border); padding-bottom:18px;">
       <div>
-        <span class="tagline-badge">
-          <i data-lucide="sparkles" size="14"></i> Premium Lounge & Grooming Parlor
+        <span class="badge" style="color:var(--success); border-color:rgba(16, 185, 129, 0.3);">
+          <i data-lucide="activity" size="14"></i> Administrator Console Active
         </span>
-        <h1>Master Cuts & Timeless Distinction.</h1>
-        <p>Book directly on our website, reach us on WhatsApp in seconds, or view our location for instant Google Maps directions.</p>
-        <div class="hero-actions">
-          <a href="#booking" class="btn btn-primary">Book an Appointment</a>
-          <a href="#location" class="btn btn-outline"><i data-lucide="map-pin" size="16"></i> Get Directions</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <h4>12+</h4>
-            <span>Years of Mastery</span>
-          </div>
-          <div class="stat-item">
-            <h4>4.9 ★</h4>
-            <span>Top Rated</span>
-          </div>
-          <div class="stat-item">
-            <h4>Instant</h4>
-            <span>WhatsApp Confirmation</span>
-          </div>
-        </div>
+        <h2>Barbershop Command Center</h2>
+        <p style="color:var(--text-muted); font-size:0.9rem;">Manage all reservations, prevent double-bookings, record walk-ins, and track revenue.</p>
       </div>
-      <div class="hero-image-wrapper">
-        <img class="hero-image" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=80" alt="Barbershop Atmosphere">
-        <div class="badge-card">
-          <i data-lucide="clock" color="#d4af37"></i>
-          <div>
-            <div style="font-weight: 600; font-size: 0.95rem;">Walk-ins & Online Booking</div>
-            <div style="font-size: 0.8rem; color: var(--text-muted);">Confirmations sent straight to WhatsApp</div>
-          </div>
-        </div>
+      <div>
+        <button class="btn btn-primary" onclick="openWalkinModal()">
+          <i data-lucide="plus-circle" size="16"></i> Log Walk-in Client
+        </button>
       </div>
     </div>
-  </section>
 
-  <!-- Services Section -->
-  <section id="services" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Curated Grooming Services</h2>
-        <p>Every cut includes consultation, hot-towel neck shave, and artisan styling.</p>
+    <!-- Live Performance Metrics -->
+    <div class="admin-metrics">
+      <div class="metric-card">
+        <span>Today's Bookings</span>
+        <h3 id="statTodayCount">0</h3>
       </div>
-
-      <div class="service-filters">
-        <button class="filter-btn active" onclick="filterServices('all')">All Services</button>
-        <button class="filter-btn" onclick="filterServices('hair')">Haircuts & Fades</button>
-        <button class="filter-btn" onclick="filterServices('beard')">Beards & Shaving</button>
-        <button class="filter-btn" onclick="filterServices('packages')">Combos & Treatments</button>
+      <div class="metric-card">
+        <span>Expected Revenue</span>
+        <h3 id="statRevenue">₵0</h3>
       </div>
-
-      <div class="services-grid" id="servicesGrid"></div>
-    </div>
-  </section>
-
-  <!-- Interactive Multi-Step Booking Section -->
-  <section id="booking" class="section" style="background: #0e1117;">
-    <div class="container">
-      <div class="section-header">
-        <h2>Instant Reservation & Backup</h2>
-        <p>Your booking sends an instant alert to our staff's WhatsApp and is dispatched via email confirmation.</p>
+      <div class="metric-card">
+        <span>Active Confirmed</span>
+        <h3 id="statActive">0</h3>
       </div>
-
-      <div class="booking-wrapper">
-        <div class="steps-indicator">
-          <div class="step-node active" id="node1">
-            <div class="step-circle">1</div>
-            <span>Service</span>
-          </div>
-          <div class="step-node" id="node2">
-            <div class="step-circle">2</div>
-            <span>Artisan</span>
-          </div>
-          <div class="step-node" id="node3">
-            <div class="step-circle">3</div>
-            <span>Time</span>
-          </div>
-          <div class="step-node" id="node4">
-            <div class="step-circle">4</div>
-            <span>Confirm</span>
-          </div>
-        </div>
-
-        <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
-          <!-- Hidden Web3Forms Input (Optional: Place free API key from web3forms.com here) -->
-          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-
-          <!-- Step 1: Select Service -->
-          <div class="booking-step active" id="step1">
-            <h3 style="margin-bottom: 8px;">Select a Treatment</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Choose your service.</p>
-            <div class="choice-grid" id="bookingServiceOptions"></div>
-            <div class="step-footer" style="justify-content: flex-end;">
-              <button type="button" class="btn btn-primary" onclick="goToStep(2)">Continue to Artisan <i data-lucide="arrow-right" size="16"></i></button>
-            </div>
-          </div>
-
-          <!-- Step 2: Select Barber -->
-          <div class="booking-step" id="step2">
-            <h3 style="margin-bottom: 8px;">Choose Your Barber</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Select your preferred specialist or opt for first available.</p>
-            <div class="choice-grid" id="bookingBarberOptions">
-              <div class="choice-card selected" onclick="selectBarber('Any Specialist', this)">
-                <i data-lucide="user-check" size="24" style="margin-bottom:8px; color:var(--accent);"></i>
-                <div style="font-weight:600;">Any Specialist</div>
-                <div style="font-size:0.8rem; color:var(--text-muted);">First open chair</div>
-              </div>
-              <div class="choice-card" onclick="selectBarber('Marcus Sterling', this)">
-                <i data-lucide="scissors" size="24" style="margin-bottom:8px; color:var(--accent);"></i>
-                <div style="font-weight:600;">Marcus Sterling</div>
-                <div style="font-size:0.8rem; color:var(--text-muted);">Master Barber</div>
-              </div>
-              <div class="choice-card" onclick="selectBarber('Julian Cole', this)">
-                <i data-lucide="smile" size="24" style="margin-bottom:8px; color:var(--accent);"></i>
-                <div style="font-weight:600;">Julian Cole</div>
-                <div style="font-size:0.8rem; color:var(--text-muted);">Beard Specialist</div>
-              </div>
-            </div>
-            <div class="step-footer">
-              <button type="button" class="btn btn-outline" onclick="goToStep(1)">Back</button>
-              <button type="button" class="btn btn-primary" onclick="goToStep(3)">Select Date & Time <i data-lucide="arrow-right" size="16"></i></button>
-            </div>
-          </div>
-
-          <!-- Step 3: Date & Slot -->
-          <div class="booking-step" id="step3">
-            <h3 style="margin-bottom: 8px;">Pick Date & Slot</h3>
-            <div class="form-group" style="margin-top: 16px;">
-              <label for="bookingDate">Date</label>
-              <input type="date" id="bookingDate" class="form-control" required>
-            </div>
-            <label style="font-size:0.9rem; color:var(--text-muted);">Available Time Slots</label>
-            <div class="choice-grid" style="grid-template-columns: repeat(3, 1fr);" id="timeSlots">
-              <div class="choice-card selected" onclick="selectTime('10:00 AM', this)">10:00 AM</div>
-              <div class="choice-card" onclick="selectTime('11:30 AM', this)">11:30 AM</div>
-              <div class="choice-card" onclick="selectTime('01:00 PM', this)">01:00 PM</div>
-              <div class="choice-card" onclick="selectTime('02:30 PM', this)">02:30 PM</div>
-              <div class="choice-card" onclick="selectTime('04:00 PM', this)">04:00 PM</div>
-              <div class="choice-card" onclick="selectTime('05:30 PM', this)">05:30 PM</div>
-            </div>
-            <div class="step-footer">
-              <button type="button" class="btn btn-outline" onclick="goToStep(2)">Back</button>
-              <button type="button" class="btn btn-primary" onclick="goToStep(4)">Review & Finalize <i data-lucide="arrow-right" size="16"></i></button>
-            </div>
-          </div>
-
-          <!-- Step 4: Contact & Confirm -->
-          <div class="booking-step" id="step4">
-            <h3 style="margin-bottom: 8px;">Contact & Confirmation</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Submitting will forward your ticket directly to WhatsApp and email.</p>
-            <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" id="custName" name="name" class="form-control" placeholder="e.g. John Doe" required>
-            </div>
-            <div class="form-group">
-              <label>Phone / WhatsApp Number</label>
-              <input type="tel" id="custPhone" name="phone" class="form-control" placeholder="e.g. +233 24 123 4567" required>
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" id="custEmail" name="email" class="form-control" placeholder="e.g. client@email.com" required>
-            </div>
-            <div style="background:#10141a; border:1px solid var(--card-border); padding:16px; border-radius:var(--radius); margin-bottom:20px;">
-              <div style="font-size:0.85rem; color:var(--text-muted);">Summary:</div>
-              <div id="bookingSummary" style="font-weight:600; font-size:1.05rem; margin-top:4px;">Signature Cut — Any Specialist</div>
-            </div>
-            <div class="step-footer">
-              <button type="button" class="btn btn-outline" onclick="goToStep(3)">Back</button>
-              <button type="submit" class="btn btn-whatsapp" id="submitBtn">
-                <i data-lucide="message-circle" size="18"></i> Confirm & Send via WhatsApp
-              </button>
-            </div>
-          </div>
-        </form>
-
-        <!-- Direct Social Fallback Options -->
-        <div style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--card-border); text-align: center;">
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">Prefer to message us directly before booking?</p>
-          <div class="direct-channels-row">
-            <a href="https://wa.me/233240000000?text=Hi%2C%20I%20have%20a%20question%20about%20booking%20an%20appointment" target="_blank" class="btn btn-outline" style="border-color: #25d366; color: #25d366;">
-              <i data-lucide="message-square" size="16"></i> Chat on WhatsApp
-            </a>
-            <a href="https://instagram.com/yourbarbershop" target="_blank" class="btn btn-outline" style="border-color: #e1306c; color: #e1306c;">
-              <i data-lucide="instagram" size="16"></i> DM us on Instagram
-            </a>
-          </div>
-        </div>
-
+      <div class="metric-card">
+        <span>Total Appointments</span>
+        <h3 id="statTotal">0</h3>
       </div>
     </div>
-  </section>
 
-  <!-- Location & Google Maps Section -->
-  <section id="location" class="section map-section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Find Our Lounge</h2>
-        <p>Convenient central location with dedicated parking for all clients.</p>
+    <!-- Admin Filter Toolbar -->
+    <div class="admin-toolbar">
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <select id="filterBarber" class="form-control" style="width:auto;" onchange="renderAdminTable()">
+          <option value="all">All Barbers</option>
+          <option value="Marcus Sterling">Marcus Sterling</option>
+          <option value="Julian Cole">Julian Cole</option>
+          <option value="Kwame Mensah">Kwame Mensah</option>
+        </select>
+        <select id="filterStatus" class="form-control" style="width:auto;" onchange="renderAdminTable()">
+          <option value="all">All Statuses</option>
+          <option value="Confirmed">Confirmed</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+        <input type="date" id="filterDate" class="form-control" style="width:auto;" onchange="renderAdminTable()">
       </div>
-      <div class="map-grid">
-        <div class="map-details-card">
-          <h3>The Crown & Razor Lounge</h3>
-          
-          <div class="detail-row">
-            <i data-lucide="map-pin" size="20"></i>
-            <div>
-              <strong>Address</strong>
-              <div style="color:var(--text-muted); font-size:0.95rem;">Oxford Street, Osu, Accra, Ghana</div>
-            </div>
-          </div>
-
-          <div class="detail-row">
-            <i data-lucide="phone-call" size="20"></i>
-            <div>
-              <strong>Phone / WhatsApp</strong>
-              <div style="color:var(--text-muted); font-size:0.95rem;">+233 24 000 0000</div>
-            </div>
-          </div>
-
-          <div class="detail-row">
-            <i data-lucide="instagram" size="20"></i>
-            <div>
-              <strong>Instagram</strong>
-              <div style="color:var(--text-muted); font-size:0.95rem;">@crownandrazor</div>
-            </div>
-          </div>
-
-          <div class="detail-row">
-            <i data-lucide="mail" size="20"></i>
-            <div>
-              <strong>Email</strong>
-              <div style="color:var(--text-muted); font-size:0.95rem;">booking@crownandrazor.com</div>
-            </div>
-          </div>
-
-          <div style="margin-top: 24px;">
-            <!-- Instant Google Maps Direction trigger -->
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Accra+Mall,+Accra,+Ghana" target="_blank" class="btn btn-primary" style="width: 100%;">
-              <i data-lucide="navigation" size="16"></i> Open Google Maps Directions
-            </a>
-          </div>
-        </div>
-
-        <div class="map-iframe-container">
-          <!-- Interactive Google Maps Embed -->
-          <iframe 
-            src="https://maps.google.com/maps?q=Accra%20Mall&t=&z=14&ie=UTF8&iwloc=&output=embed"
-            loading="lazy" 
-            allowfullscreen>
-          </iframe>
-        </div>
+      <div>
+        <button class="btn btn-outline" style="padding:8px 14px; font-size:0.8rem;" onclick="resetDemoData()">
+          <i data-lucide="rotate-ccw" size="14"></i> Reset Default Bookings
+        </button>
       </div>
     </div>
-  </section>
 
-  <!-- Team Section -->
-  <section id="team" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Meet The Artisans</h2>
-        <p>Passionate craftsmen dedicated to sharp details and bespoke care.</p>
-      </div>
-      <div class="barbers-grid">
-        <div class="barber-card">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Marcus Sterling">
-          <div class="barber-info">
-            <h3>Marcus Sterling</h3>
-            <div class="role">Founder & Master Barber</div>
-            <p style="color:var(--text-muted); font-size:0.9rem;">14 years mastering straight razor contours, classic tapers, and scissor craft.</p>
-          </div>
-        </div>
-        <div class="barber-card">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Julian Cole">
-          <div class="barber-info">
-            <h3>Julian Cole</h3>
-            <div class="role">Beard Specialist & Fade Architect</div>
-            <p style="color:var(--text-muted); font-size:0.9rem;">Renowned for razor-sharp beard alignments and immaculate skin fades.</p>
-          </div>
-        </div>
-        <div class="barber-card">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Kwame Mensah">
-          <div class="barber-info">
-            <h3>Kwame Mensah</h3>
-            <div class="role">Texture & Pattern Specialist</div>
-            <p style="color:var(--text-muted); font-size:0.9rem;">Specializing in textured hair shaping, loc maintenance, and bespoke partings.</p>
-          </div>
-        </div>
-      </div>
+    <!-- Appointments Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Service</th>
+            <th>Barber</th>
+            <th>Date & Time</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="appointmentsTableBody">
+          <!-- Injected via JavaScript -->
+        </tbody>
+      </table>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer id="contact">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="brand" style="margin-bottom:16px;">
-            <i data-lucide="scissors"></i>
-            <span>CROWN & RAZOR</span>
-          </div>
-          <p>Where old-school etiquette meets contemporary urban tailoring. Enjoy an espresso or beverage during every visit.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Operating Hours</h4>
-          <p>Monday – Friday: 9:00 AM – 8:00 PM</p>
-          <p>Saturday: 8:30 AM – 7:00 PM</p>
-          <p>Sunday: 10:00 AM – 5:00 PM</p>
-        </div>
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <li><a href="https://instagram.com" target="_blank" style="color:var(--text-muted);"><i data-lucide="instagram" size="14"></i> Instagram</a></li>
-          <li><a href="https://wa.me/233240000000" target="_blank" style="color:var(--text-muted);"><i data-lucide="message-circle" size="14"></i> WhatsApp Support</a></li>
-          <li><a href="#location" style="color:var(--text-muted);"><i data-lucide="map-pin" size="14"></i> Find on Map</a></li>
-        </div>
+  <!-- Walk-in Booking Modal -->
+  <div class="modal-overlay" id="walkinModal">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="font-size:1.3rem;">Log Walk-in Client</h3>
+        <button onclick="closeWalkinModal()" style="background:transparent; border:0; color:var(--text-muted); cursor:pointer;">✕</button>
       </div>
-      <div class="bottom-bar">
-        <div>&copy; 2026 The Crown & Razor Lounge. All rights reserved.</div>
-        <div>Crafted for modern gentlemen.</div>
-      </div>
+      <form onsubmit="handleWalkinSubmit(event)">
+        <div class="form-group">
+          <label>Customer Name</label>
+          <input type="text" id="walkinName" class="form-control" placeholder="Walk-in Client" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="walkinPhone" class="form-control" placeholder="Optional phone">
+        </div>
+        <div class="form-group">
+          <label>Service</label>
+          <select id="walkinService" class="form-control" required></select>
+        </div>
+        <div class="form-group">
+          <label>Barber Assigned</label>
+          <select id="walkinBarber" class="form-control" required></select>
+        </div>
+        <div class="form-group">
+          <label>Time Slot</label>
+          <select id="walkinSlot" class="form-control" required></select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Save & Lock Slot</button>
+      </form>
     </div>
-  </footer>
+  </div>
 
+  <!-- Toast Notification element -->
+  <div id="toast">
+    <i data-lucide="check-circle" size="18" style="color:var(--accent);"></i>
+    <span id="toastMsg">Notification message</span>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 3. JAVASCRIPT: DATABASE & BACKEND LOGIC -->
+  <!-- ========================================== -->
   <script>
-    // Initialize Icons
-    lucide.createIcons();
-
-    // ==========================================
-    // ⚙️ SHOP CONFIGURATION SETTINGS
-    // ==========================================
-    const SHOP_CONFIG = {
-      // Barbershop WhatsApp number (International format without '+' or leading zeros, e.g., '233241234567')
+    // Configuration & Currency Settings
+    const CONFIG = {
       whatsappNumber: '233537142915',
-      
-      // Barbershop Instagram handle (without '@')
-      instagramHandle: 'iam_e.b.e.n',
-
-      // Google Maps destination for one-tap navigation
-      mapsDestination: 'Accra Mall, Accra, Ghana'
+      currency: 'GHS', // 'GHS' or 'USD'
+      usdToGhsRate: 15.5,
+      adminPin: '1234',
+      instagramHandle: 'iam_e.b.e.n'
     };
 
-    // Services Catalog Data
-    const services = [
-      { id: '1', title: 'Signature Precision Cut', category: 'hair', price: '$45', duration: '40 min', desc: 'Custom shear and clipper cut, hot-towel neck shave, styling.' },
-      { id: '2', title: 'Skin Fade & Razor Finish', category: 'hair', price: '$50', duration: '45 min', desc: 'Surgical taper or bald fade polished with a foil shaver and razor lineup.' },
-      { id: '3', title: 'Beard Sculpt & Hot Towel', category: 'beard', price: '$35', duration: '30 min', desc: 'Trimming, crisp perimeter shaping, and nourishing botanical beard oil massage.' },
-      { id: '4', title: 'Traditional Straight Razor Shave', category: 'beard', price: '$40', duration: '35 min', desc: 'Steamed towels, warm lather lathering, gentle double pass shave.' },
-      { id: '5', title: 'The Royal Treatment (Full Combo)', category: 'packages', price: '$75', duration: '70 min', desc: 'Signature cut, complete beard sculpt, black charcoal mask, scalp massage.' },
-      { id: '6', title: 'Scalp Exfoliation & Cut', category: 'packages', price: '$60', duration: '50 min', desc: 'Tea tree scrub to revitalize follicles followed by full styling cut.' }
+    // Services Catalog
+    const SERVICES = [
+      { id: '1', title: 'Signature Cut & Taper', category: 'hair', priceGHS: 120, priceUSD: 15, duration: '40 min', desc: 'Precision clipper and shear shaping, razor perimeter line, and soothing neck massage.' },
+      { id: '2', title: 'Skin Fade & Blade Lineup', category: 'hair', priceGHS: 150, priceUSD: 20, duration: '45 min', desc: 'Drop, taper, or low skin fade finished with a foil shaver and razor contour.' },
+      { id: '3', title: 'Beard Sculpt & Steam', category: 'beard', priceGHS: 90, priceUSD: 12, duration: '30 min', desc: 'Warm towel treatment, essential beard oils, and straight-edge blade line.' },
+      { id: '4', title: 'Hot Lather Traditional Shave', category: 'beard', priceGHS: 110, priceUSD: 14, duration: '35 min', desc: 'Two-pass hot lather shaving ritual with sandalwood aftershave lotion.' },
+      { id: '5', title: 'The Royal Treatment (Full Combo)', category: 'combo', priceGHS: 220, priceUSD: 30, duration: '75 min', desc: 'Signature cut, complete beard sculpt, black peel pore mask, and head massage.' }
     ];
 
-    // State for Booking
-    let selectedService = services[0];
-    let selectedBarber = 'Any Specialist';
-    let selectedTime = '10:00 AM';
+    const BARBERS = [
+      { name: 'Any Specialist', role: 'Fastest Chair' },
+      { name: 'Marcus Sterling', role: 'Master Barber' },
+      { name: 'Julian Cole', role: 'Beard Specialist' },
+      { name: 'Kwame Mensah', role: 'Locs & Taper Artist' }
+    ];
 
-    // Set default date input to tomorrow
-    const dateInput = document.getElementById('bookingDate');
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    dateInput.value = tomorrow.toISOString().split('T')[0];
+    const TIME_SLOTS = [
+      '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
+      '01:30 PM', '02:30 PM', '03:30 PM', '04:30 PM', '05:30 PM', '06:30 PM'
+    ];
 
-    // Render Services Grid
-    function renderServices(items) {
+    // Demo Initial Database (Loaded if localStorage is empty)
+    const DEFAULT_BOOKINGS = [
+      {
+        id: 'CR-101',
+        customer: 'Kwabena Darko',
+        phone: '+233 24 455 8920',
+        email: 'k.darko@example.com',
+        service: 'Signature Cut & Taper',
+        barber: 'Marcus Sterling',
+        date: getTodayDateString(),
+        slot: '10:00 AM',
+        priceGHS: 120,
+        status: 'Confirmed'
+      },
+      {
+        id: 'CR-102',
+        customer: 'Samuel Asante',
+        phone: '+233 20 882 1102',
+        email: 'samuel@asante.com',
+        service: 'The Royal Treatment (Full Combo)',
+        barber: 'Julian Cole',
+        date: getTodayDateString(),
+        slot: '02:30 PM',
+        priceGHS: 220,
+        status: 'Confirmed'
+      }
+    ];
+
+    // In-memory / LocalStorage Database Connector
+    let appointmentsDB = [];
+
+    function initDatabase() {
+      const stored = localStorage.getItem('crown_razor_appointments');
+      if (stored) {
+        try { appointmentsDB = JSON.parse(stored); } catch(e) { appointmentsDB = DEFAULT_BOOKINGS; }
+      } else {
+        appointmentsDB = [...DEFAULT_BOOKINGS];
+        saveDatabase();
+      }
+    }
+
+    function saveDatabase() {
+      localStorage.setItem('crown_razor_appointments', JSON.stringify(appointmentsDB));
+      updateAdminDashboard();
+    }
+
+    // Helper: Today's date in YYYY-MM-DD
+    function getTodayDateString() {
+      const d = new Date();
+      return d.toISOString().split('T')[0];
+    }
+
+    function getPriceDisplay(priceGHS) {
+      if (CONFIG.currency === 'USD') {
+        const usd = Math.round(priceGHS / CONFIG.usdToGhsRate);
+        return `$${usd}`;
+      }
+      return `₵${priceGHS}`;
+    }
+
+    function toggleCurrency() {
+      CONFIG.currency = CONFIG.currency === 'GHS' ? 'USD' : 'GHS';
+      document.getElementById('currencyToggle').innerText = CONFIG.currency === 'GHS' ? 'GHS ₵' : 'USD $';
+      renderServicesCatalog();
+      renderBookingServiceChoices();
+      updateBookingSummary();
+      renderAdminTable();
+      showToast(`Switched display to ${CONFIG.currency}`);
+    }
+
+    // Render Services Catalog on Landing Page
+    function renderServicesCatalog(cat = 'all') {
       const container = document.getElementById('servicesGrid');
-      container.innerHTML = items.map(s => `
+      const filtered = cat === 'all' ? SERVICES : SERVICES.filter(s => s.category === cat);
+      container.innerHTML = filtered.map(s => `
         <div class="service-card">
           <div>
             <div class="top-meta">
-              <span class="price">${s.price}</span>
+              <span class="price">${getPriceDisplay(s.priceGHS)}</span>
               <span class="duration"><i data-lucide="clock" size="13"></i> ${s.duration}</span>
             </div>
-            <h3>${s.title}</h3>
-            <p>${s.desc}</p>
+            <h3 style="font-size:1.2rem; margin-bottom:8px;">${s.title}</h3>
+            <p style="color:var(--text-muted); font-size:0.86rem; margin-bottom:18px;">${s.desc}</p>
           </div>
-          <button class="btn btn-outline" style="width:100%" onclick="quickBook('${s.id}')">Book This Service</button>
+          <button class="btn btn-outline" style="width:100%;" onclick="quickSelectService('${s.id}')">
+            Select Service
+          </button>
         </div>
       `).join('');
       lucide.createIcons();
     }
 
-    // Filter Services
     function filterServices(cat) {
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       event.target.classList.add('active');
-      if (cat === 'all') {
-        renderServices(services);
-      } else {
-        renderServices(services.filter(s => s.category === cat));
-      }
+      renderServicesCatalog(cat);
     }
 
-    // Populate Booking Service Options
-    function populateBookingServices() {
-      const wrapper = document.getElementById('bookingServiceOptions');
-      wrapper.innerHTML = services.map((s, idx) => `
-        <div class="choice-card ${idx === 0 ? 'selected' : ''}" onclick="selectBookingService('${s.id}', this)">
-          <div style="font-weight:600; font-size:0.95rem;">${s.title}</div>
-          <div style="color:var(--accent); font-weight:700; margin-top:4px;">${s.price}</div>
+    // ==========================================
+    // CLIENT BOOKING LOGIC & CONFLICT ENGINE
+    // ==========================================
+    let bookingState = {
+      step: 1,
+      service: SERVICES[0],
+      barber: 'Any Specialist',
+      date: getTodayDateString(),
+      slot: '10:00 AM'
+    };
+
+    function renderBookingServiceChoices() {
+      const wrapper = document.getElementById('bookingServiceChoices');
+      wrapper.innerHTML = SERVICES.map(s => `
+        <div class="choice-card ${bookingState.service.id === s.id ? 'selected' : ''}" onclick="selectBookingService('${s.id}')">
+          <div style="font-weight:600; font-size:0.92rem;">${s.title}</div>
+          <div style="color:var(--accent); font-weight:700; margin-top:4px;">${getPriceDisplay(s.priceGHS)}</div>
         </div>
       `).join('');
     }
 
-    function selectBookingService(id, element) {
-      document.querySelectorAll('#bookingServiceOptions .choice-card').forEach(c => c.classList.remove('selected'));
-      element.classList.add('selected');
-      selectedService = services.find(s => s.id === id);
-      updateSummary();
+    function renderBarberChoices() {
+      const wrapper = document.getElementById('barberChoices');
+      wrapper.innerHTML = BARBERS.map(b => `
+        <div class="choice-card ${bookingState.barber === b.name ? 'selected' : ''}" onclick="selectBookingBarber('${b.name}')">
+          <i data-lucide="scissors" size="22" style="margin-bottom:6px; color:var(--accent);"></i>
+          <div style="font-weight:600; font-size:0.92rem;">${b.name}</div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">${b.role}</div>
+        </div>
+      `).join('');
+      lucide.createIcons();
     }
 
-    function selectBarber(name, element) {
-      document.querySelectorAll('#bookingBarberOptions .choice-card').forEach(c => c.classList.remove('selected'));
-      element.classList.add('selected');
-      selectedBarber = name;
-      updateSummary();
-    }
+    // CONFLICT PREVENTION ENGINE:
+    // Scans database for matching Date + Time + Barber
+    function isSlotTaken(date, slot, barber) {
+      return appointmentsDB.some(app => {
+        if (app.status === 'Cancelled') return false;
+        if (app.date !== date || app.slot !== slot) return false;
+        
+        // If booking for a specific barber
+        if (barber !== 'Any Specialist' && app.barber === barber) return true;
 
-    function selectTime(time, element) {
-      document.querySelectorAll('#timeSlots .choice-card').forEach(c => c.classList.remove('selected'));
-      element.classList.add('selected');
-      selectedTime = time;
-    }
+        // If specific barber booked, 'Any Specialist' checks if all actual barbers are filled
+        if (barber === 'Any Specialist') {
+          const bookedBarbersAtSlot = appointmentsDB
+            .filter(a => a.date === date && a.slot === slot && a.status !== 'Cancelled')
+            .map(a => a.barber);
+          return bookedBarbersAtSlot.length >= (BARBERS.length - 1);
+        }
 
-    function updateSummary() {
-      document.getElementById('bookingSummary').innerText = `${selectedService.title} (${selectedService.price}) — with ${selectedBarber}`;
-    }
-
-    function goToStep(stepNumber) {
-      for (let i = 1; i <= 4; i++) {
-        document.getElementById(`step${i}`).classList.remove('active');
-        const node = document.getElementById(`node${i}`);
-        node.classList.remove('active');
-        if (i < stepNumber) node.classList.add('completed');
-        else node.classList.remove('completed');
-      }
-      document.getElementById(`step${stepNumber}`).classList.add('active');
-      document.getElementById(`node${stepNumber}`).classList.add('active');
-    }
-
-    function quickBook(serviceId) {
-      selectedService = services.find(s => s.id === serviceId);
-      updateSummary();
-      populateBookingServices();
-      document.querySelectorAll('#bookingServiceOptions .choice-card').forEach((c, idx) => {
-        if (services[idx].id === serviceId) c.classList.add('selected');
-        else c.classList.remove('selected');
+        return false;
       });
+    }
+
+    function renderAvailableSlots() {
+      const dateInput = document.getElementById('bookingDateInput');
+      bookingState.date = dateInput.value || getTodayDateString();
+      document.getElementById('slotBarberName').innerText = bookingState.barber;
+
+      const container = document.getElementById('timeSlotGrid');
+      container.innerHTML = TIME_SLOTS.map(slot => {
+        const taken = isSlotTaken(bookingState.date, slot, bookingState.barber);
+        const isSelected = bookingState.slot === slot && !taken;
+
+        if (taken) {
+          return `
+            <div class="choice-card disabled" title="Slot already reserved">
+              <div>${slot}</div>
+              <span class="conflict-tag">RESERVED</span>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="choice-card ${isSelected ? 'selected' : ''}" onclick="selectTimeSlot('${slot}')">
+              <div>${slot}</div>
+            </div>
+          `;
+        }
+      }).join('');
+    }
+
+    function selectBookingService(id) {
+      bookingState.service = SERVICES.find(s => s.id === id);
+      renderBookingServiceChoices();
+      updateBookingSummary();
+    }
+
+    function selectBookingBarber(name) {
+      bookingState.barber = name;
+      renderBarberChoices();
+      renderAvailableSlots();
+      updateBookingSummary();
+    }
+
+    function selectTimeSlot(slot) {
+      bookingState.slot = slot;
+      renderAvailableSlots();
+      updateBookingSummary();
+    }
+
+    function quickSelectService(id) {
+      bookingState.service = SERVICES.find(s => s.id === id);
+      renderBookingServiceChoices();
+      updateBookingSummary();
       location.href = '#booking';
       goToStep(2);
     }
 
-    // ==========================================
-    // 📲 SUBMIT TO WHATSAPP & BACKGROUND EMAIL BACKUP
-    // ==========================================
-    function handleBookingSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('custName').value;
-      const phone = document.getElementById('custPhone').value;
-      const email = document.getElementById('custEmail').value;
-      const date = document.getElementById('bookingDate').value;
-      const submitBtn = document.getElementById('submitBtn');
-
-      submitBtn.innerText = "Dispatching Appointment...";
-
-      // 1. Compose formatted WhatsApp message
-      const message = `💈 *NEW APPOINTMENT BOOKING* 💈\n\n` +
-        `👤 *Name:* ${name}\n` +
-        `📞 *Phone:* ${phone}\n` +
-        `✉️ *Email:* ${email}\n` +
-        `✂️ *Service:* ${selectedService.title} (${selectedService.price})\n` +
-        `💈 *Barber:* ${selectedBarber}\n` +
-        `📅 *Date:* ${date}\n` +
-        `⏰ *Time Slot:* ${selectedTime}\n\n` +
-        `_Sent from The Crown & Razor online booking portal._`;
-
-      const encodedMessage = encodeURIComponent(message);
-      const whatsappURL = `https://wa.me/${SHOP_CONFIG.whatsappNumber}?text=${encodedMessage}`;
-
-      // 2. Dispatch email backup in background (Web3Forms API)
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: "YOUR_ACCESS_KEY_HERE", // Optional: paste free key here
-          subject: `New Barber Booking: ${name} (${date} at ${selectedTime})`,
-          name: name,
-          phone: phone,
-          email: email,
-          service: selectedService.title,
-          price: selectedService.price,
-          barber: selectedBarber,
-          date: date,
-          time: selectedTime
-        })
-      }).catch(err => console.log('Email backup note:', err));
-
-      // 3. Open WhatsApp directly for the client
-      setTimeout(() => {
-        window.open(whatsappURL, '_blank');
-        alert(`🎉 Thank you, ${name}! Your booking summary has been created. We're now opening WhatsApp to confirm directly with our team.`);
-        goToStep(1);
-        e.target.reset();
-        submitBtn.innerHTML = `<i data-lucide="message-circle" size="18"></i> Confirm & Send via WhatsApp`;
-        lucide.createIcons();
-      }, 500);
+    function updateBookingSummary() {
+      document.getElementById('bookingSummary').innerText = `${bookingState.service.title} — ${bookingState.barber}`;
+      document.getElementById('summaryTotal').innerText = `Date: ${bookingState.date} @ ${bookingState.slot} (${getPriceDisplay(bookingState.service.priceGHS)})`;
     }
 
-    // Init Page
-    renderServices(services);
-    populateBookingServices();
-    updateSummary();
+    function goToStep(num) {
+      bookingState.step = num;
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById(`step${i}`).classList.remove('active');
+        const node = document.getElementById(`node${i}`);
+        node.classList.remove('active');
+        if (i < num) node.classList.add('completed');
+        else node.classList.remove('completed');
+      }
+      document.getElementById(`step${num}`).classList.add('active');
+      document.getElementById(`node${num}`).classList.add('active');
+
+      if (num === 3) renderAvailableSlots();
+    }
+
+    // Submit Customer Booking: Write to database, prevent conflict, open WhatsApp
+    function handleCustomerBooking(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const email = document.getElementById('custEmail').value.trim();
+
+      // Double check availability against database
+      if (isSlotTaken(bookingState.date, bookingState.slot, bookingState.barber)) {
+        showToast('⚠️ That slot was just reserved. Please pick another time.');
+        goToStep(3);
+        renderAvailableSlots();
+        return;
+      }
+
+      // Record in system database
+      const newBooking = {
+        id: 'CR-' + Math.floor(100 + Math.random() * 900),
+        customer: name,
+        phone: phone,
+        email: email || 'N/A',
+        service: bookingState.service.title,
+        barber: bookingState.barber,
+        date: bookingState.date,
+        slot: bookingState.slot,
+        priceGHS: bookingState.service.priceGHS,
+        status: 'Confirmed'
+      };
+
+      appointmentsDB.unshift(newBooking);
+      saveDatabase();
+
+      // Format WhatsApp dispatch
+      const waMsg = `💈 *NEW APPOINTMENT BOOKING* 💈\n\n` +
+        `👤 *Client:* ${name}\n` +
+        `📞 *Phone:* ${phone}\n` +
+        `✂️ *Service:* ${bookingState.service.title} (${getPriceDisplay(bookingState.service.priceGHS)})\n` +
+        `💈 *Barber:* ${bookingState.barber}\n` +
+        `📅 *Date:* ${bookingState.date}\n` +
+        `⏰ *Time Slot:* ${bookingState.slot}\n` +
+        `🔖 *Reference:* #${newBooking.id}\n\n` +
+        `_Booked via Crown & Razor Lounge portal._`;
+
+      const waUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(waMsg)}`;
+
+      // Reset form and notify
+      showToast(`Appointment #${newBooking.id} Confirmed!`);
+      e.target.reset();
+      goToStep(1);
+
+      // Open WhatsApp window
+      window.open(waUrl, '_blank');
+    }
+
+    // ==========================================
+    // ADMIN DASHBOARD & BACKEND MANAGEMENT
+    // ==========================================
+    let isAdminLoggedIn = false;
+
+    function toggleAdminPrompt() {
+      if (isAdminLoggedIn) {
+        switchView('client');
+      } else {
+        const pin = prompt('Enter Staff PIN (Default: 1234):');
+        if (pin === CONFIG.adminPin) {
+          isAdminLoggedIn = true;
+          switchView('admin');
+          showToast('Welcome to Staff Command Center');
+        } else if (pin !== null) {
+          alert('Incorrect PIN.');
+        }
+      }
+    }
+
+    function switchView(view) {
+      if (view === 'admin') {
+        document.getElementById('clientView').style.display = 'none';
+        document.getElementById('adminView').style.display = 'block';
+        document.getElementById('adminBtnLabel').innerText = 'Exit Admin';
+        document.getElementById('viewModeBtn').classList.add('active');
+        updateAdminDashboard();
+      } else {
+        document.getElementById('clientView').style.display = 'block';
+        document.getElementById('adminView').style.display = 'none';
+        document.getElementById('adminBtnLabel').innerText = 'Staff Portal';
+        document.getElementById('viewModeBtn').classList.remove('active');
+        isAdminLoggedIn = false;
+        renderAvailableSlots();
+      }
+    }
+
+    function updateAdminDashboard() {
+      // Calculate Metrics
+      const today = getTodayDateString();
+      const todayApps = appointmentsDB.filter(a => a.date === today && a.status !== 'Cancelled');
+      
+      const totalRev = appointmentsDB
+        .filter(a => a.status === 'Confirmed' || a.status === 'Completed')
+        .reduce((sum, a) => sum + (a.priceGHS || 0), 0);
+
+      const activeCount = appointmentsDB.filter(a => a.status === 'Confirmed').length;
+
+      document.getElementById('statTodayCount').innerText = todayApps.length;
+      document.getElementById('statRevenue').innerText = getPriceDisplay(totalRev);
+      document.getElementById('statActive').innerText = activeCount;
+      document.getElementById('statTotal').innerText = appointmentsDB.length;
+
+      renderAdminTable();
+    }
+
+    function renderAdminTable() {
+      const barberF = document.getElementById('filterBarber').value;
+      const statusF = document.getElementById('filterStatus').value;
+      const dateF = document.getElementById('filterDate').value;
+
+      let list = appointmentsDB;
+
+      if (barberF !== 'all') list = list.filter(a => a.barber === barberF);
+      if (statusF !== 'all') list = list.filter(a => a.status === statusF);
+      if (dateF) list = list.filter(a => a.date === dateF);
+
+      const tbody = document.getElementById('appointmentsTableBody');
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--text-muted); padding:30px;">No appointments match your filters.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(app => `
+        <tr>
+          <td>
+            <strong>${app.customer}</strong>
+            <div style="font-size:0.75rem; color:var(--text-muted);">${app.phone}</div>
+          </td>
+          <td>${app.service}</td>
+          <td><span style="color:var(--accent); font-weight:600;">${app.barber}</span></td>
+          <td>${app.date} @ ${app.slot}</td>
+          <td>${getPriceDisplay(app.priceGHS)}</td>
+          <td>
+            <span class="badge-status status-${app.status.toLowerCase()}">${app.status}</span>
+          </td>
+          <td>
+            <div class="action-btn-group">
+              ${app.status !== 'Completed' ? `<button class="btn-action" title="Mark Done" onclick="updateAppStatus('${app.id}', 'Completed')">✓</button>` : ''}
+              ${app.status !== 'Cancelled' ? `<button class="btn-action" title="Cancel/Free Slot" onclick="updateAppStatus('${app.id}', 'Cancelled')">✕</button>` : ''}
+              <button class="btn-action" title="Delete permanently" onclick="deleteAppointment('${app.id}')">🗑</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function updateAppStatus(id, newStatus) {
+      const item = appointmentsDB.find(a => a.id === id);
+      if (item) {
+        item.status = newStatus;
+        saveDatabase();
+        showToast(`Appointment #${id} updated to ${newStatus}`);
+      }
+    }
+
+    function deleteAppointment(id) {
+      if (confirm(`Permanently remove booking #${id}? This will unlock the time slot.`)) {
+        appointmentsDB = appointmentsDB.filter(a => a.id !== id);
+        saveDatabase();
+        showToast(`Booking #${id} deleted`);
+      }
+    }
+
+    function resetDemoData() {
+      if (confirm('Reset to default sample bookings?')) {
+        appointmentsDB = [...DEFAULT_BOOKINGS];
+        saveDatabase();
+        showToast('Database reset to defaults');
+      }
+    }
+
+    // Walk-in modal functions
+    function openWalkinModal() {
+      const servSelect = document.getElementById('walkinService');
+      servSelect.innerHTML = SERVICES.map(s => `<option value="${s.id}">${s.title} (${getPriceDisplay(s.priceGHS)})</option>`).join('');
+
+      const barbSelect = document.getElementById('walkinBarber');
+      barbSelect.innerHTML = BARBERS.filter(b => b.name !== 'Any Specialist').map(b => `<option value="${b.name}">${b.name}</option>`).join('');
+
+      const slotSelect = document.getElementById('walkinSlot');
+      slotSelect.innerHTML = TIME_SLOTS.map(t => `<option value="${t}">${t}</option>`).join('');
+
+      document.getElementById('walkinModal').style.display = 'flex';
+    }
+
+    function closeWalkinModal() {
+      document.getElementById('walkinModal').style.display = 'none';
+    }
+
+    function handleWalkinSubmit(e) {
+      e.preventDefault();
+      const sId = document.getElementById('walkinService').value;
+      const sObj = SERVICES.find(s => s.id === sId);
+      const barber = document.getElementById('walkinBarber').value;
+      const slot = document.getElementById('walkinSlot').value;
+      const name = document.getElementById('walkinName').value;
+      const phone = document.getElementById('walkinPhone').value || 'Walk-in Client';
+
+      const newBooking = {
+        id: 'WI-' + Math.floor(100 + Math.random() * 900),
+        customer: name,
+        phone: phone,
+        email: 'walkin@lounge.com',
+        service: sObj.title,
+        barber: barber,
+        date: getTodayDateString(),
+        slot: slot,
+        priceGHS: sObj.priceGHS,
+        status: 'Confirmed'
+      };
+
+      appointmentsDB.unshift(newBooking);
+      saveDatabase();
+      closeWalkinModal();
+      showToast(`Walk-in for ${name} locked in!`);
+      e.target.reset();
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
+    // Setup on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      initDatabase();
+      renderServicesCatalog();
+      renderBookingServiceChoices();
+      renderBarberChoices();
+
+      const dateInp = document.getElementById('bookingDateInput');
+      dateInp.value = getTodayDateString();
+      dateInp.min = getTodayDateString();
+
+      renderAvailableSlots();
+      updateBookingSummary();
+      lucide.createIcons();
+    });
   </script>
 </body>
 </html>
